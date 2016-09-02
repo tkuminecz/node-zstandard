@@ -4,6 +4,13 @@
   "description": "zstandard bindings for Node",
   "author": "Tim Kuminecz <tkuminecz@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "zstd",
+    "zstandard",
+    "compress",
+    "compression",
+    "node",
+  ],
   "homepage": "https://github.com/tkuminecz/node-zstandard#readme",
   "bugs": {
     "url": "https://github.com/tkuminecz/node-zstandard/issues"
