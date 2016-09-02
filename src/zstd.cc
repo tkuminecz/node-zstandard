@@ -3,7 +3,7 @@
 #include <node_buffer.h>
 
 extern "C" {
-  #include "../deps/zstd/lib/zstd.h"
+  #include "zstd.h"
 }
 
 #define ZSTDJS_BLOCK_SIZE 128 * (1U<<10) //128 KB

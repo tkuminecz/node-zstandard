@@ -22,13 +22,7 @@
   "main": "src/index.js",
   "scripts": {
     "clean": "rm -rf build",
-    "postinstall": "./node_modules/.bin/node-gyp rebuild -v",
-    "preinstall": "npm run zstd",
-    "test": "node ./test/zstd.js",
-    "zstd": "npm run zstd:install && npm run zstd:build && npm run zstd:copy",
-    "zstd:install": "git submodule init && git submodule update",
-    "zstd:build": "make -C deps/zstd/lib",
-    "zstd:copy": "mkdir -p build/lib && cp deps/zstd/lib/libzstd.a build/lib/"
+    "test": "node ./test/zstd.js"
   },
   "devDependencies": {
     "node-gyp": "^3.4.0",
