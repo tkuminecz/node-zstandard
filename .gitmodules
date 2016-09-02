@@ -1,3 +1,0 @@
-[submodule "deps/zstd"]
-	path = deps/zstd
-	url = git@github.com:tkuminecz/zstd.git
