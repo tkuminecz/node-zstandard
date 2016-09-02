@@ -79,7 +79,34 @@ namespace zstandard {
   void Decompress(const FunctionCallbackInfo<Value>& args) {
     Isolate* isolate = args.GetIsolate();
 
-    args.GetReturnValue().Set(String::NewFromUtf8(isolate, "world"));
+    // validate args
+    if (args.Length() < 1 || !node::Buffer::HasInstance(args[0])) {
+      throwError(isolate, Exception::TypeError, "Expected first argument to be a buffer");
+      return;
+    }
+
+    // convert node buffer
+    Local<Object> srcBuffer = args[0]->ToObject();
+    size_t srcSize;
+    char *srcData = fromNodeBuffer(srcBuffer, srcSize);
+
+    // allocate memory for decompressed data
+    size_t maxDecompressedSize = ZSTD_getDecompressedSize(srcData, srcSize);
+    char *decompressedData = (char *)std::malloc(maxDecompressedSize);
+    if (!decompressedData) {
+      throwError(isolate, Exception::Error, "Not enough memory");
+      return;
+    }
+
+    // actually compress the data
+    size_t actualDecompressedSize = ZSTD_decompress(decompressedData, maxDecompressedSize, srcData, srcSize);
+    if (actualDecompressedSize != maxDecompressedSize) {
+      throwError(isolate, Exception::Error, "Error decompressing data");
+      return;
+    }
+
+    // return as a node buffer
+    args.GetReturnValue().Set(toNodeBuffer(isolate, decompressedData, actualDecompressedSize));
   }
 
   /**

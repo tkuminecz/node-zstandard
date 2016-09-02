@@ -16,7 +16,7 @@
   "scripts": {
     "clean": "rm -rf build",
     "configure": "./node_modules/.bin/node-gyp configure",
-    "libzstd": "make",
+    "libzstd": "cd deps/zstd/lib && make && mkdir -p ../../../build/lib && cp libzstd.a ../../../build/lib/ && cd -",
     "build": "npm run configure && npm run libzstd && ./node_modules/.bin/node-gyp build -v",
     "test": "node ./test/zstd.js"
   },
