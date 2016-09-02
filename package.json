@@ -9,7 +9,7 @@
     "zstandard",
     "compress",
     "compression",
-    "node",
+    "node"
   ],
   "homepage": "https://github.com/tkuminecz/node-zstandard#readme",
   "bugs": {
