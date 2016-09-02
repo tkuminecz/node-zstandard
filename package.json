@@ -1,0 +1,27 @@
+{
+  "name": "node-zstandard",
+  "version": "0.1.0",
+  "description": "zstandard bindings for Node",
+  "author": "Tim Kuminecz <tkuminecz@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/tkuminecz/node-zstandard#readme",
+  "bugs": {
+    "url": "https://github.com/tkuminecz/node-zstandard/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkuminecz/node-zstandard.git"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "clean": "rm -rf build",
+    "configure": "./node_modules/.bin/node-gyp configure",
+    "libzstd": "make",
+    "build": "npm run configure && npm run libzstd && ./node_modules/.bin/node-gyp build -v",
+    "test": "node ./test/zstd.js"
+  },
+  "devDependencies": {
+    "node-gyp": "^3.4.0",
+    "tape": "^4.6.0"
+  }
+}
