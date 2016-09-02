@@ -1,5 +1,5 @@
 {
-  "name": "node-zstandard",
+  "name": "zstandard",
   "version": "0.1.0",
   "description": "zstandard bindings for Node",
   "author": "Tim Kuminecz <tkuminecz@gmail.com>",
