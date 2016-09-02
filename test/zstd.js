@@ -4,6 +4,8 @@ const test = require('tape'),
 	zstd = require('../src/index');
 
 test('zstandard compress/decompress', t => {
+	t.plan(100);
+
 	let bsize = 1024*1024;
 
 	for (var i = 0; i < 100; i++) {
@@ -16,5 +18,30 @@ test('zstandard compress/decompress', t => {
 		t.equal(decompressed.toString('base64'), data.toString('base64'));
 	}
 
-	t.end();
+});
+
+test('zstandard compress errors', t => {
+	t.plan(1);
+
+	try {
+		zstd.compress('foo');
+		t.fail('should have thrown an exception');
+	}
+	catch (err) {
+		t.equal(err.message, 'Expected first argument to be a buffer');
+	}
+
+});
+
+test('zstandard decompress errors', t => {
+	t.plan(1);
+
+	try {
+		zstd.decompress('foo');
+		t.fail('should have thrown an exception');
+	}
+	catch (err) {
+		t.equal(err.message, 'Expected first argument to be a buffer');
+	}
+
 });

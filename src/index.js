@@ -1,4 +1,15 @@
 var zstd = require('../build/Release/zstd');
 
-module.exports.compress = zstd.compress;
-module.exports.decompress = zstd.decompress;
+/**
+ * Compressses data
+ */
+module.exports.compress = function compress(data) {
+	return zstd.compress(data);
+}
+
+/**
+ * Decompresses data
+ */
+module.exports.decompress = function decompress(buf) {
+	return zstd.decompress(buf);
+}
